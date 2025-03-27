@@ -26,7 +26,7 @@ if not openai.api_key:
 MODEL = "gpt-4"
 
 # Boolean flag: set to True to stream the chain-of-thought response.
-STREAM_CHAIN_OF_THOUGHT = False
+STREAM_CHAIN_OF_THOUGHT = True
 
 # Instantiate the client
 client = OpenAI(api_key=OPENAI_API_KEY)
