@@ -1,5 +1,6 @@
 import base64
 import random
+import openai
 
 encoded_password = b'Z2VuZXJhdGl2ZQ=='
 encoded_second_password = b'MiwzLDUsNywxMSwxMywxNywxOSwyMywyOSwzMSwzNyw0MSw0Myw0Nyw1Myw1OSw2MSw2Nyw3MSw3Myw3OSw4Myw4OSw5Nw=='
