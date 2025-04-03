@@ -29,5 +29,5 @@ completion = client.chat.completions.create(
 
 # Parse the response and print the JSON object
 response_content = completion.choices[0].message.content
-print(f"The model returned:{response_content}")
+print("The model returned:" + response_content)
 
