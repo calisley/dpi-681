@@ -8,27 +8,7 @@ client = OpenAI(
 
 # System Prompt: Tell the model what you want it to do
 system_prompt = """
-    You are an expert textual analyst.
-    Your task is to analyze the content of news articles and provide the following in JSON format:
-    - A short summary
-    - Key points
-    - Social Issues Raised 
-    - Political Slant
-    - Sentiment 
-    You provide your response in JSON format.
-
-    The JSON response should look like:
-    {{
-        "summary": "short summary of the article",
-        "key_points": ["point 1", "point 2", ...],
-        "social_issues": ["issue 1", "issue 2", ...],
-        "political_slant": right/left/neutral,
-        "sentiment": positive/negative/neutral
-    }}
-
-    For key_points, social_issues, and political_slant, provide a list of items.
-    For sentiment, provide a string indicating the sentiment (e.g., "positive", "negative", "neutral").
-    Respond only with the JSON object, without any additional text or explanation.
+   YOUR PROMPT HERE
 """
 
 # Read the article content from the file
@@ -37,11 +17,12 @@ with open('./section-2/article.txt', 'r', encoding='utf-8') as file:
 
 # Create a chat completion request to analyze the article
 completion = client.chat.completions.create(
-    model="o3-mini",
+    model="gpt-4o",
      messages=[
-        {"role": "system", "content": system_prompt},
+         #might need to add something here?
         {"role": "user", "content": "Provide a JSON representation of this article:\n" + article_content}
     ],
+    #or sometihng here? does this change with what model you use?
 )
 
 # Parse the response and print the JSON object
