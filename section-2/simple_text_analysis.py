@@ -6,7 +6,9 @@ client = OpenAI(
     api_key=""  # Add your API key here
 )
 
-# System Prompt: Tell the model what you want it to do
+# CHALLENGE 1: Using the prompt engineering tools you learned this week, design a prompt that extracts something you might want to know about the article. 
+# This should be something you might want to convert into data to analyse later, like political slant, sentiment, or a rating of the article's quality
+
 system_prompt = """
    YOUR PROMPT HERE
 """
@@ -20,18 +22,12 @@ completion = client.chat.completions.create(
     model="gpt-4o",
      messages=[
          #might need to add something here?
-        {"role": "user", "content": "Provide a JSON representation of this article:\n" + article_content}
+        {"role": "user", "content": "Analyze this article as instructed:\n" + article_content}
     ],
     #or sometihng here? does this change with what model you use?
 )
 
 # Parse the response and print the JSON object
 response_content = completion.choices[0].message.content
-
-try:
-    analysis_result = json.loads(response_content)  # Convert response to JSON
-    print(json.dumps(analysis_result, indent=4))  # Pretty-print the JSON
-except json.JSONDecodeError:
-    print("Failed to decode the response as JSON. Here is the raw response:")
-    print(response_content)
+print(f"The model returned:{response_content}")
 
