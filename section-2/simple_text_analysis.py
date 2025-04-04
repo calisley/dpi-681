@@ -6,7 +6,7 @@ client = OpenAI(
     api_key=""  # Add your API key here
 )
 
-# CHALLENGE 1: Using the prompt engineering tools you learned this week, design a prompt that extracts something you might want to know about the article. 
+# CHALLENGE: Using the prompt engineering tools you learned this week, design a prompt that extracts something you might want to know about the article. 
 # This should be something you might want to convert into data to analyse later, like political slant, sentiment, or a rating of the article's quality
 
 system_prompt = """
