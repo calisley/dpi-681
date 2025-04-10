@@ -33,8 +33,10 @@ for index, row in tqdm(df.iterrows(), total=df.shape[0], desc="Processing Images
     )
     
     # Extract the output text from the response
-    output_text = response.output_text
     
+    output_text = response.output_text
+    print("Image ID:", image_id)
+    print("Model Response: ", output_text)
     # Append the result for this image
     results.append({
         "image_id": image_id,
