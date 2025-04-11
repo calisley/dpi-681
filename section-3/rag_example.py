@@ -6,7 +6,9 @@ from openai import OpenAI
 import openai
 
 
-client = "YOUR API KEY HERE"
+client = OpenAI(
+    api_key="YOUR KEY HERE"
+)
 
 # Basic system prompt
 BASE_SYSTEM_PROMPT = (
@@ -23,10 +25,6 @@ METADATA_FILE = "./metadata.json"
 TOP_K = 3
 EMBEDDING_MODEL = "text-embedding-3-small"
 MODEL = "gpt-4o"
-
-# Load FAISS index and metadata
-if not os.path.exists(FAISS_INDEX_FILE) or not os.path.exists(METADATA_FILE):
-    raise FileNotFoundError("FAISS index or metadata file not found. Build the vector database first.")
 
 faiss_index = faiss.read_index(FAISS_INDEX_FILE)
 with open(METADATA_FILE, 'r', encoding='utf-8') as f:
