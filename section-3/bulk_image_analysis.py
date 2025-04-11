@@ -1,7 +1,5 @@
 import pandas as pd
 from openai import OpenAI
-from tqdm import tqdm
-
 
 # CSV file containing image details (must have 'image_id' and 'url' columns)
 csv_file = "./images.csv"  # Update with your CSV file path if needed
@@ -10,13 +8,13 @@ csv_file = "./images.csv"  # Update with your CSV file path if needed
 df = pd.read_csv(csv_file)
 
 # Initialize the OpenAI client with your API key
-client = OpenAI(api_key="YOUR API KEY HERE")
+client = OpenAI(api_key="YOUR API KEY")
 
 # List to store the results for each image
 results = []
 
 # Iterate over the DataFrame rows with a progress bar
-for index, row in tqdm(df.iterrows(), total=df.shape[0], desc="Processing Images"):
+for index, row in df.iterrows():
     image_id = row["image_id"]
     image_url = row["url"]
     
@@ -26,7 +24,7 @@ for index, row in tqdm(df.iterrows(), total=df.shape[0], desc="Processing Images
         input=[{
             "role": "user",
             "content": [
-                {"type": "input_text", "text": "what's in this image?"},
+                {"type": "input_text", "text": "Return one word capturing the sentiment of the image."},
                 {"type": "input_image", "image_url": image_url},
             ],
         }],
