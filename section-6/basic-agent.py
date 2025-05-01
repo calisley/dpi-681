@@ -1,54 +1,33 @@
-from agents import Agent, InputGuardrail, GuardrailFunctionOutput, Runner
-from pydantic import BaseModel
+from agents import Agent, WebSearchTool, Runner,function_tool
 import asyncio
 
-#defines a structured output for the guardrail
-class HomeworkOutput(BaseModel):
-    is_homework: bool
-    reasoning: str
+@function_tool
+def square(x: float) -> float:
+    """
+    Returns the square of the number x.
+    """
+    return x * x
 
-guardrail_agent = Agent(
-    name="Guardrail check",
-    instructions="Check if the user is asking about homework.",
-    output_type=HomeworkOutput,
-)
-
-math_tutor_agent = Agent(
-    name="Math Tutor",
-    handoff_description="Specialist agent for math questions",
-    instructions="You provide help with math problems. Explain your reasoning at each step and include examples",
-)
-
-history_tutor_agent = Agent(
-    name="History Tutor",
-    handoff_description="Specialist agent for historical questions",
-    instructions="You provide assistance with historical queries. Explain important events and context clearly.",
-)
-
-
-async def homework_guardrail(ctx, agent, input_data):
-    result = await Runner.run(guardrail_agent, input_data, context=ctx.context)
-    final_output = result.final_output_as(HomeworkOutput)
-    return GuardrailFunctionOutput(
-        output_info=final_output,
-        tripwire_triggered=not final_output.is_homework,
-    )
-
-#our main reasoning agent
-triage_agent = Agent(
-    name="Triage Agent",
-    instructions="You determine which agent to use based on the user's homework question",
-    handoffs=[history_tutor_agent, math_tutor_agent],
-    input_guardrails=[
-        InputGuardrail(guardrail_function=homework_guardrail),
+agent = Agent(
+    name="Assistant",
+    tools=[
+        WebSearchTool(),   # gives you `search(query: str) → List[SearchResult]`
+        square        # gives you `square(x: int) → int`
     ],
 )
 
 async def main():
-    result = await Runner.run(triage_agent, "How did the first president of the united states get elected?")
+    # The agent can now call `search("...")` or `square(7)` under the hood
+    prompt = """
+    What's the weather in Paris today?
+    """
+    result = await Runner.run(agent, prompt)
     print(result.final_output)
 
-    result = await Runner.run(triage_agent, "what is life")
+    prompt = """
+    What is the square of 3.7545624?
+    """
+    result = await Runner.run(agent, prompt)
     print(result.final_output)
 
 if __name__ == "__main__":
