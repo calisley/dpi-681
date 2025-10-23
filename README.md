@@ -9,5 +9,5 @@ Please see the "Wiki" portion of this Repo for more in depth instructions / guid
 
 ## Section 1: Your First API Requests
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/calisley/dpi-681/blob/main/section-1/Section%201.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calisley/dpi-681/blob/main/section-1/Section%201.ipynb)
 
