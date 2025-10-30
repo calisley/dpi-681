@@ -11,3 +11,7 @@ Please see the "Wiki" portion of this Repo for more in depth instructions / guid
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calisley/dpi-681/blob/main/section-1/Section%201.ipynb)
 
+## Section 2: Parameters and Data Analysis
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calisley/dpi-681/blob/main/section-2/Section%202.ipynb)
+
