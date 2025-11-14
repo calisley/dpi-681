@@ -18,3 +18,7 @@ Please see the "Wiki" portion of this Repo for more in depth instructions / guid
 ## Section 3: Image analyis and RAG
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calisley/dpi-681/blob/main/section-3/Section%203.ipynb)
+
+## Section 4: Intro to Agents
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calisley/dpi-681/blob/main/section-4/Section_4.ipynb)
